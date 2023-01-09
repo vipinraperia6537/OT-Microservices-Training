@@ -8,7 +8,7 @@ node {
         }
     }
     stage("Pushing image to ECR") {
-        docker.withRegistry('https://702037529261.dkr.ecr.us-west-2.amazonaws.com', 'spinnaker-registry') {
+        docker.withRegistry('390287378384.dkr.ecr.ap-southeast-1.amazonaws.com/vipin-1', 'spinnaker-registry') {
             docker.image('${JOB_NAME}').push('${BUILD_ID}')
         }
     }
