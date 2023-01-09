@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'docker'
-    }
+    agent any
     parameters {
         string(defaultValue: 'Spaces-1', description: '', name: 'SpaceId', trim: true)
         string(defaultValue: 'Petclinic', description: '', name: 'ProjectName', trim: true)
