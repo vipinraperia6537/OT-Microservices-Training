@@ -1,37 +1,39 @@
 pipeline {
-    agent any
-    parameters{
-        string (name: 'person', defaultValue: 'vipin kumar',description: "who are you")
-        booleanParam (name: "is male", defaultValue: true, description: "gender")
-        
+    agent {
+        label 'docker'
     }
-    
-
+    parameters {
+        string(defaultValue: 'Spaces-1', description: '', name: 'SpaceId', trim: true)
+        string(defaultValue: 'Petclinic', description: '', name: 'ProjectName', trim: true)
+        string(defaultValue: 'Dev', description: '', name: 'EnvironmentName', trim: true)
+        string(defaultValue: 'Octopus', description: '', name: 'ServerId', trim: true)
+    }
     stages {
-        stage('Run a command') {
+        stage ('Add tools') {
             steps {
-                sh 'date'
-                sh 'pwd'
+                tool('OctoCLI')
             }
         }
-        stage('Envirnment variable') {
+        stage('Building our image') {
             steps {
-                sh 'echo "${BUILD_ID}"'
+                script {
+                    dockerImage = docker.build "mcasperson/petclinic:$BUILD_NUMBER"
+                }
             }
         }
-        stage('parameters') {
+        stage('Deploy our image') {
             steps {
-                echo 'print perameters'
-                sh 'echo "${name}"'
+                script {
+                    // Assume the Docker Hub registry by passing an empty string as the first parameter
+                    docker.withRegistry('' , 'dockerhub') {
+                        dockerImage.push()
+                    }
+                }
             }
         }
-        stage('continue?') {
-            input{
-                message "should we continue?"
-                ok "yes we should"
-            }  
-            steps {
-                echo "parameterised"
+        stage('deploy') {
+            steps {                                
+                octopusCreateRelease deployThisRelease: true, environment: "${EnvironmentName}", project: "${ProjectName}", releaseVersion: "1.0.${BUILD_NUMBER}", serverId: "${ServerId}", spaceId: "${SpaceId}", toolId: 'Default', waitForDeployment: true                
             }
         }
     }
