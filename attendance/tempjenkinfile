@@ -9,8 +9,10 @@ pipeline {
           sh "whoami"
           sh "sudo docker build ."
           
+          
             }
            } 
+     
         }
         }
         stage("Building image employee") {
@@ -91,17 +93,7 @@ pipeline {
            } 
         }
         }
-             stage("Building image static") {
-    steps{
-    script{
-        dir("static") {
-          
-          sh "sudo docker build ."
-          
-            }
-           } 
-        }
-        }
+  
              stage("Building image webserver") {
     steps{
     script{
