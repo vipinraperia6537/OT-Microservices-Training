@@ -24,6 +24,105 @@ pipeline {
            } 
         }
         }
+             stage("Building image frontend") {
+    steps{
+    script{
+        dir("frontend") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
+             stage("Building image gateway") {
+    steps{
+    script{
+        dir("gateway") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
+             stage("Building image elasticsearch") {
+    steps{
+    script{
+        dir("elasticsearch") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
+             stage("Building image mysql-healthcheack") {
+    steps{
+    script{
+        dir("mysql-healthcheack") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
+             stage("Building image mysql") {
+    steps{
+    script{
+        dir("mysql") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
+             stage("Building image notification") {
+    steps{
+    script{
+        dir("notification") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
+             stage("Building image salary") {
+    steps{
+    script{
+        dir("salary") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
+             stage("Building image static") {
+    steps{
+    script{
+        dir("static") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
+             stage("Building image webserver") {
+    steps{
+    script{
+        dir("webserver") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
         
     }
 }
