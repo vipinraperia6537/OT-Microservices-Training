@@ -58,16 +58,7 @@ pipeline {
         }
         }
              stage("Building image mysql-healthcheack") {
-    steps{
-    script{
-        dir("mysql-healthcheack") {
-          
-          sh "sudo docker build ."
-          
-            }
-           } 
-        }
-        }
+ 
              stage("Building image mysql") {
     steps{
     script{
