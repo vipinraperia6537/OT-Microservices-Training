@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
+    stage("Building image") {
+        dir("attendance") {
+            docker.build('${JOB_NAME}', '-f Dockerfile .')
+        }
         }
     }
 }
