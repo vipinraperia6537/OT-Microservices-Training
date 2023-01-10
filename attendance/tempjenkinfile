@@ -6,7 +6,7 @@ pipeline {
     steps{
     script{
         dir("attendance") {
-          sh "docker.build('${JOB_NAME}', '-f Dockerfile .')"
+          sh "docker build ."
             }
            } 
         }
