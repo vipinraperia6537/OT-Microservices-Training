@@ -57,8 +57,7 @@ pipeline {
            } 
         }
         }
-             stage("Building image mysql-healthcheack") {
- 
+              
              stage("Building image mysql") {
     steps{
     script{
