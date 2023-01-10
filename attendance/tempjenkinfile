@@ -13,6 +13,17 @@ pipeline {
            } 
         }
         }
+        stage("Building image") {
+    steps{
+    script{
+        dir("employee") {
+          
+          sh "sudo docker build ."
+          
+            }
+           } 
+        }
+        }
         
     }
 }
