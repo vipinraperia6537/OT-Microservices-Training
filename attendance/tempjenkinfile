@@ -4,9 +4,11 @@ pipeline {
     stages {
     stage("Building image") {
     steps{
+    script{
         dir("attendance") {
-            docker.build('${JOB_NAME}', '-f Dockerfile .')
+          sh "docker.build('${JOB_NAME}', '-f Dockerfile ."
             }
+           } 
         }
         }
         
