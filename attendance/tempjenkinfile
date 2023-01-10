@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-    stage("Building image") {
+    stage("Building image attendance") {
     steps{
     script{
         dir("attendance") {
@@ -13,7 +13,7 @@ pipeline {
            } 
         }
         }
-        stage("Building image") {
+        stage("Building image employee") {
     steps{
     script{
         dir("employee") {
