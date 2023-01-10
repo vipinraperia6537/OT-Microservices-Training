@@ -6,7 +6,9 @@ pipeline {
     steps{
     script{
         dir("attendance") {
+          sh "whoami"
           sh "docker build ."
+          
             }
            } 
         }
