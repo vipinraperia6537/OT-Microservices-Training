@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+    stage("Building image attendance") {
+    steps{
+    script{
+        dir("attendance") {
+          //sh "whoami"
+          //sh "sudo docker build ."
+          dockerImage = docker.build dockerimagename
+          
+          
+            }
+           } 
+     
+        }
+           stage('Pushing Image') {
+      environment {
+               registryCredential = 'dockerhublogin'
+           }
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            dockerImage.push("latest")
+          }
+        }
+      }
+    }
+        }
+        }
+        }
