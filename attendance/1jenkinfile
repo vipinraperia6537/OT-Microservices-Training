@@ -1,21 +1,29 @@
 pipeline {
-    agent any
 
-    stages {
-    stage("Building image attendance") {
-    steps{
-    script{
-        dir("attendance") {
-          //sh "whoami"
-          //sh "sudo docker build ."
+  environment {
+    dockerimagename = "thetips4you/nodeapp"
+    dockerImage = ""
+  }
+
+  agent any
+
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git 'https://github.com/shazforiot/nodeapp_test.git'
+      }
+    }
+
+    stage('Build image') {
+      steps{
+        script {
           dockerImage = docker.build dockerimagename
-          
-          
-            }
-           } 
-     }
         }
-           stage('Pushing Image') {
+      }
+    }
+
+    stage('Pushing Image') {
       environment {
                registryCredential = 'dockerhublogin'
            }
@@ -27,6 +35,5 @@ pipeline {
         }
       }
     }
-        }
-        }
-        
+    }
+    }
