@@ -13,7 +13,7 @@ pipeline {
           
             }
            } 
-     
+     }
         }
            stage('Pushing Image') {
       environment {
@@ -29,4 +29,4 @@ pipeline {
     }
         }
         }
-        }
+        
