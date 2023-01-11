@@ -8,7 +8,7 @@ pipeline {
         dir("attendance") {
           //sh "whoami"
           //sh "sudo docker build ."
-          sh "docker.build("${env.BUILD_ID}")"
+          sh "docker.build(${env.BUILD_ID)"
           
           
             }
