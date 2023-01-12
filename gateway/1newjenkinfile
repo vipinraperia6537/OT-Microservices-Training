@@ -33,7 +33,7 @@ pipeline {
          // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
            // dockerImage.push("latest")
          
-      withDockerRegistry(credentialsId: 'dockerhublogin', url: 'https://hub.docker.com/') {
+      withDockerRegistry(credentialsId: 'dockerhublogin', url: 'https://registry.hub.docker.com') {
     dockerImage.push("latest")
          }
         }
