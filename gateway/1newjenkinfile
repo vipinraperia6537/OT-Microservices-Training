@@ -42,7 +42,7 @@ pipeline {
             //docker.image('${JOB_NAME}').push('${BUILD_ID}')
             dockerImage.push("latest")
         }
-         }
+         
         }
       }
     }
