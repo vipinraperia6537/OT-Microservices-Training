@@ -26,12 +26,12 @@ pipeline {
     }
     }
 
-    stage('Pushing Image') {
-      environment {
-               credentialsId = 'dockerhublogin'
-           }
-      steps{
-        script {
+    //stage('Pushing Image') {
+      //environment {
+              // credentialsId = 'dockerhublogin'
+        //   }
+      //steps{
+        //script {
          // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
            // dockerImage.push("latest")
          
@@ -47,4 +47,4 @@ pipeline {
       }
     }
     }
-    }
+    
