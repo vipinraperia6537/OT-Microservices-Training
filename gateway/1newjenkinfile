@@ -38,7 +38,7 @@ pipeline {
       //withDockerRegistry(credentialsId: 'dockerhublogin', url: 'https://registry.hub.docker.com') {
       //dockerImage.push("latest")
       stage("Pushing image to ECR") {
-        docker.withRegistry('https://390287378384.dkr.ecr.ap-southeast-1.amazonaws.com/vipin-1', ' dockerimagename') {
+        docker.withRegistry(docker.withRegistry(ecrurl, ecrcredentials) {
             //docker.image('${JOB_NAME}').push('${BUILD_ID}')
             dockerImage.push("latest")
         }
