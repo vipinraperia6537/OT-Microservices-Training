@@ -2,6 +2,8 @@ pipeline {
 
   environment {
     dockerimagename = "empms-gateway"
+     ecrurl = "https://390287378384.dkr.ecr.ap-southeast-1.amazonaws.com"
+    ecrcredentials = "ecr:ap-southeast-1:vipin-1"
     dockerImage = ""
   }
 
