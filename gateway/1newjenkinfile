@@ -43,7 +43,7 @@ pipeline {
         docker.withRegistry(docker.withRegistry(ecrurl, ecrcredentials) {
             //docker.image('${JOB_NAME}').push('${BUILD_ID}')
             dockerImage.push("latest")
-        }
+           }
          }
         }
       }
