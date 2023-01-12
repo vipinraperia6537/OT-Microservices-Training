@@ -33,8 +33,13 @@ pipeline {
          // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
            // dockerImage.push("latest")
          
-      withDockerRegistry(credentialsId: 'dockerhublogin', url: 'https://registry.hub.docker.com') {
-    dockerImage.push("latest")
+      //withDockerRegistry(credentialsId: 'dockerhublogin', url: 'https://registry.hub.docker.com') {
+      //dockerImage.push("latest")
+      stage("Pushing image to ECR") {
+        docker.withRegistry('https://390287378384.dkr.ecr.ap-southeast-1.amazonaws.com/vipin-1', ' dockerimagename') {
+            //docker.image('${JOB_NAME}').push('${BUILD_ID}')
+            dockerImage.push("latest")
+        }
          }
         }
       }
