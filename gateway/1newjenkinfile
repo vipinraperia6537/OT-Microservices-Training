@@ -30,9 +30,12 @@ pipeline {
            }
       steps{
         script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("latest")
-          }
+         // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+           // dockerImage.push("latest")
+         
+      withDockerRegistry(credentialsId: 'dockerhublogin', url: 'https://hub.docker.com/') {
+    dockerImage.push("latest")
+         }
         }
       }
     }
