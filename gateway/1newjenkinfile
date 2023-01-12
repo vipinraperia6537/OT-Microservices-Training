@@ -2,7 +2,7 @@ pipeline {
 
   environment {
     dockerimagename = "empms-gateway"
-     ecrurl = "https://390287378384.dkr.ecr.ap-southeast-1.amazonaws.com"
+    ecrurl = "https://390287378384.dkr.ecr.ap-southeast-1.amazonaws.com"
     ecrcredentials = "ecr:ap-southeast-1:vipin-1"
     dockerImage = ""
   }
@@ -40,9 +40,8 @@ pipeline {
       stage("Pushing image to ECR") {
       steps{
          script{
-        docker.withRegistry(docker.withRegistry(ecrurl, ecrcredentials) {
-            //docker.image('${JOB_NAME}').push('${BUILD_ID}')
-            dockerImage.push("latest")
+        docker.withRegistry(ecrurl, ecrcredentials) {
+        dockerImage.push("latest")
            }
          }
         }
