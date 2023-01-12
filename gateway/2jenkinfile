@@ -1,0 +1,42 @@
+pipeline {
+
+  environment {
+    dockerimagename = "empms-gateway"
+    dockerImage = ""
+    AWS_ACCOUNT_ID="390287378384"
+        AWS_DEFAULT_REGION="ap-southeast-1"
+        IMAGE_REPO_NAME="vipin-ecr-ot"
+        IMAGE_TAG="latest"
+        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+  }
+
+  agent any
+
+  stages {
+  stage('Checkout Source') {
+      steps {
+        git 'https://github.com/vipinraperia6537/OT-Microservices-Training.git'
+      }
+    }
+
+       stage('Build image') {
+      steps{
+        script {
+        dir("gateway") {
+          dockerImage = docker.build dockerimagename
+        }
+      }
+    }
+    }
+      stage('Pushing to ECR') {
+        steps{  
+         script {
+                sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
+                sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+         }
+        }
+      }
+   
+    }
+}    
+   
