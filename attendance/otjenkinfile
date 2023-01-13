@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "empms-gateway"
+    dockerimagename = "empms-attendance"
     dockerImage = ""
     AWS_ACCOUNT_ID="390287378384"
         AWS_DEFAULT_REGION="ap-southeast-1"
